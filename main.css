@@ -1,0 +1,77 @@
+/* variables */
+:root {
+    --footer-height: 14rem;
+
+    --link-margin: .75rem;
+    --link-font-size: 2rem;
+    --link-img-alt-padding: calc(var(--link-font-size)/2);
+
+    --desktop-columns: 3;
+    --tablet-columns: 2;
+    --mobile-columns: 1;
+
+    --desktop-columns-width: calc(100%/var(--desktop-columns) - 2*var(--link-margin));
+    --tablet-columns-width: calc(100%/var(--tablet-columns) - 2*var(--link-margin));
+    --mobile-columns-width: calc(100%/var(--mobile-columns) - 2*var(--link-margin));
+}
+
+/* footer at bottom 'hack' */
+html,
+body {
+    height: 100%;
+}
+
+.section {
+    min-height: calc(100% - var(--footer-height));
+}
+
+.footer {
+    height: var(--footer-height);
+}
+
+/* style */
+.content {
+    text-align: justify;
+}
+
+.link {
+    margin: var(--link-margin);
+    width: var(--desktop-columns-width);
+    font-size: var(--link-font-size);
+    color: black;
+
+    transition: transform .1s;
+}
+
+.link:hover {
+    transform: rotate(1deg) scale(1.05, 1.05);
+}
+
+.link:active, .link:visited {
+    transform: rotate(-1deg) scale(.95, .95);
+    opacity: .9;
+}
+
+.link>img {
+    display: flex;
+    align-items: center;
+    height: 100% !important;
+    padding: 0;
+}
+
+.link>img::before, .link>img::after {
+    padding: var(--link-img-alt-padding);
+    margin: auto;
+}
+
+@media screen and (max-width: 1407px) {
+    .link {
+        width: var(--tablet-columns-width);
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .link {
+        width: var(--mobile-columns-width);
+    }
+}
