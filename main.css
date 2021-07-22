@@ -53,15 +53,32 @@ body {
 }
 
 .link>img {
-    display: flex;
-    align-items: center;
-    height: 100% !important;
+    position: relative;
+    text-align: center;
+    min-height: 100% !important; /*height: 100% on chromium did mess up everything*/
     padding: 0;
 }
 
-.link>img::before, .link>img::after {
-    padding: var(--link-img-alt-padding);
-    margin: auto;
+/*chrome: add space on top of the alt-text*/
+.link>img[alt]::before {
+    display: block;
+    padding: 1rem;
+    content: "";
+}
+
+/*every browser: replace alt-text, chrome: hide broken-link placeholder*/
+.link>img[alt]::after {
+    position: absolute;
+    display: block;
+    padding: 1rem;
+    content: attr(alt);
+    border-radius: 1rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    text-align: center;
 }
 
 @media screen and (max-width: 1407px) {
